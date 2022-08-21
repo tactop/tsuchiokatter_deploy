@@ -1,0 +1,143 @@
+const router = require("express").Router();
+const User = require("../models/User");
+const typeModel = require("../util/typeModel");
+//ユーザー情報更新
+router.put("/:id", async (req, res) => {
+    if (req.body.userId === req.params.id || req.body.isAdmin) {
+        try {
+            const user = await User.findByIdAndUpdate(req.params.id, {
+                $set: req.body,
+            });
+            return res.status(200).json("ユーザー情報が更新されました");
+        } catch (error) {
+            return res.status(500).json(error);
+        }
+    } else {
+        return res.status(403).json("自分のアカウントのみ更新できます");
+    }
+});
+
+//ユーザー情報削除
+router.delete("/:id", async (req, res) => {
+    if (req.body.userId === req.params.id || req.body.isAdmin) {
+        try {
+            const user = await User.findByIdAndDelete(req.params.id);
+            return res.status(200).json("ユーザー情報が削除されました");
+        } catch (error) {
+            return res.status(500).json(error);
+        }
+    } else {
+        return res.status(403).json("自分のアカウントのみ削除できます");
+    }
+});
+
+//ユーザー情報の取得
+// router.get("/:id", async (req, res) => {
+//     try {
+//         const user = await User.findById(req.params.id);
+//         const { password, updatedAt, ...other } = user._doc;
+//         return res.status(200).json(other);
+//     } catch (error) {
+//         return res.status(500).json(error);
+//     }
+
+// });
+//クエリでユーザー情報の取得
+router.get("/", async (req, res) => {
+    const userId = req.query.userId;
+    const username = req.query.username;
+    try {
+        const user = userId
+            ? await User.findById(userId)
+            : await User.findOne({ username: username });
+        const { password, updatedAt, ...other } = user._doc;
+        return res.status(200).json(other);
+    } catch (error) {
+        return res.status(500).json(error);
+    }
+
+});
+
+//ユーザーのフォロー
+router.put("/:id/follow", async (req, res) => {
+    if (req.body.userId !== req.params.id) {
+        try {
+            const user = await User.findById(req.params.id);
+            const currentUser = await User.findById(req.body.userId);
+            //フォロワーに自分がいなかったらフォロー可能
+            if (!user.followers.includes(req.body.userId)) {
+                await user.updateOne({
+                    $push: {
+                        followers: req.body.userId
+                    }
+                });
+                await currentUser.updateOne({
+                    $push: {
+                        followings: req.params.id
+                    }
+                });
+                return res.status(200).json("フォローに成功しました");
+            } else {
+                return res.status(403).json("あなたはすでにフォローしています");
+            }
+
+        } catch (error) {
+            return res.status(500).json(error);
+        }
+    } else {
+        return res.status(500).json("自分自身をフォローできません");
+    }
+});
+
+//ユーザーのフォロー解除
+router.put("/:id/unfollow", async (req, res) => {
+    if (req.body.userId !== req.params.id) {
+        try {
+            const user = await User.findById(req.params.id);
+            const currentUser = await User.findById(req.body.userId);
+            //フォロワーに存在したらフォローが外せる
+            if (user.followers.includes(req.body.userId)) {
+                await user.updateOne({
+                    $pull: {
+                        followers: req.body.userId
+                    }
+                });
+                await currentUser.updateOne({
+                    $pull: {
+                        followings: req.params.id
+                    }
+                });
+                return res.status(200).json("フォロー解除しました");
+            } else {
+                return res.status(403).json("フォローしていません");
+            }
+
+        } catch (error) {
+            return res.status(500).json(error);
+        }
+    } else {
+        return res.status(500).json("自分自身をフォロー解除できません");
+    }
+});
+
+// router.get("/",(req,res)=>{
+//     res.send("user router")
+// });
+
+//実績一覧取得
+router.get("/achieve/list", async (req, res) => {
+    const userId = req.query.userId;
+    const username = req.query.username;
+    try {
+
+        const user = userId
+            ? await User.findById(userId)
+            : await User.findOne({ username: username });
+        const achived= typeModel.createAchivedTypeList(user.achived);
+        return res.status(200).json(achived);
+    } catch (error) {
+        return res.status(500).json(error);
+    }
+
+});
+module.exports = router;
