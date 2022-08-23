@@ -11,7 +11,7 @@ export default function Topbar() {
     const [point, setPoint] = useState();
     useEffect(() => {
         const fetchPoint = async () => {
-            const currentUser = await axios.get(`/users?username=${user.username}`);
+            const currentUser = await axios.get(`/api/users?username=${user.username}`);
             setPoint(currentUser.data.point);
         };
         if (user) {

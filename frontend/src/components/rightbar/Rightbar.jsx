@@ -11,7 +11,7 @@ export default function Rightbar() {
   //ここの途中
   useEffect(() => {
     const fetchAchive = async () => {
-      const achivedData = await axios.get(`/users/achieve/list?username=${user.username}`);
+      const achivedData = await axios.get(`/api/users/achieve/list?username=${user.username}`);
       setAchiveds(achivedData.data);
     };
     fetchAchive();

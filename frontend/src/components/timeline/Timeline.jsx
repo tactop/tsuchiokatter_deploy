@@ -13,8 +13,8 @@ export default function Timeline({ username }) {
     const fetchPosts = async () => {
       //console.log(username);
       const response = username
-        ? await axios.get(`/posts/profile/${username}`)
-        : await axios.get(`/posts/timeline/all`);
+        ? await axios.get(`/api/posts/profile/${username}`)
+        : await axios.get(`/api/posts/timeline/all`);
       // setPosts(response.data.sort((post1, post2) => {
       //   return new Date(post2.createdAt) - new Date(post1.createdAt)
       // }));

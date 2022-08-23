@@ -18,7 +18,7 @@ export default function Share() {
             desc: desc.current.value
         }
         try {
-            await axios.post("/posts", newPost);
+            await axios.post("/api/posts", newPost);
             window.location.reload();
         } catch (error) {
             console.log(error);

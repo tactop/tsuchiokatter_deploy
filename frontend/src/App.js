@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom"
 import Home from "./pages/homes/Home";
 import Achive from "./pages/achive/Achive";

@@ -17,7 +17,7 @@ export default function NameRegist() {
             username: username.current.value,
         };
         try {
-            const response = await axios.post("/auth/register", newUser);
+            const response = await axios.post("/api/auth/register", newUser);
             dispatch({
                 type: "LOGIN_SUCCESS", payload: {
                     username: response.data.username,

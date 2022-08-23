@@ -33,9 +33,10 @@ app.use("/api/upload", uploadRoute);
 // app.listen(PORT, () => console.log("サーバーが起動しました"));
 
 app.get('*', (req, res) => {
+    console.log("アクセス");
     res.sendFile(path.join(__dirname,'../frontend/build/index.html'));
 });
 
 app.listen(PORT, () => {
   console.log(`listening on *:${PORT}`);
-})
+});

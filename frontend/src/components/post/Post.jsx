@@ -30,7 +30,7 @@ export default function Post({ post }) {
     useEffect(() => {
         const fetchUser = async () => {
             // console.log(`/users/:${post.userId}`);
-            const response = await axios.get(`/users/?userId=${post.userId}`);
+            const response = await axios.get(`/api/users/?userId=${post.userId}`);
             // console.log(response);
             setUser(response.data);
         };
@@ -45,9 +45,7 @@ export default function Post({ post }) {
                     <div className="postTopLeft">
                         {/* <Link to={`/profile/${user.username}`}
                             style={{ textDecoration: "none", color: "black" }}> */}
-                        <img src={user.profilePicture ?
-                            PUBLIC_FOLDER + user.profilePicture
-                            : PUBLIC_FOLDER + "tsuchioka.jpg"}
+                        <img src={PUBLIC_FOLDER + "/tsuchioka.jpg"}
                             alt=""
                             className='postProfileImg' />
                         <span className="postUserName">
