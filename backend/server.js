@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname, '../frontend/build')));
 
 //DB接続
 mongoose.connect(
-    process.env.MONGOURL
+  process.env.MONGOURL
 ).then(() => { console.log("DBと接続中") }).catch((err) => console.log(err));
 
 //ミドルウェア
@@ -33,10 +33,10 @@ app.use("/api/upload", uploadRoute);
 // app.listen(PORT, () => console.log("サーバーが起動しました"));
 
 app.get('*', (req, res) => {
-    console.log("アクセス");
-    res.sendFile(path.join(__dirname,'../frontend/build/index.html'));
+  console.log("アクセス");
+  res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
 });
 
-app.listen(PORT, () => {
+app.listen(process.env.PORT || PORT, () => {
   console.log(`listening on *:${PORT}`);
 });
