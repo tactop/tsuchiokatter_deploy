@@ -4,6 +4,8 @@ const User = require("../models/User");
 //ユーザー登録
 router.post("/register", async (req, res) => {
     try {
+        console.log("register");
+        console.log(process.env.MONGOURL);
         const existUser = await User.findOne({ email: req.body.email });
         if (!existUser) return res.status(404).json({ msg: "そのユーザーは存在しています" });
 
