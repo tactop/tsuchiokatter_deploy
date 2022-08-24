@@ -85,3 +85,13 @@
 .errorMessage{
     color: #F15B55;
 }
+
+.coinIcon {
+    /* color: #f9ca02; */
+    color: #fbd427;
+}
+.pointArea{
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}

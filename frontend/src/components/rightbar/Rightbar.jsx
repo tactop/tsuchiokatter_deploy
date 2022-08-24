@@ -30,7 +30,7 @@ export default function Rightbar() {
                   <div className='achivedgenreTop'>
                     <span className="genreTitel">
                       {achiveGenre.genreDisp}</span>
-                    <span className="genreAchivedaRtio"
+                    <span className="genreAchivedRatio"
                       style={(achiveGenre.achievedNumInGenre == achiveGenre.numInGenre) ? { color: '#e6b422' } : {}}>
                       {achiveGenre.achievedNumInGenre}/{achiveGenre.numInGenre}</span>
                   </div>

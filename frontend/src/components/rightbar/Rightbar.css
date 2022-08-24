@@ -23,12 +23,16 @@
     font-size: 20px;
     font-weight: bold;
     margin-top: 20px;
+    display: flex;
 }
 
 .genreTitel {
     margin-right: 30px;
+    flex: 8;
 }
-
+.genreAchivedRatio{
+    flex: 4;
+}
 .achivedWords {
     display: flex;
     flex-direction: column;

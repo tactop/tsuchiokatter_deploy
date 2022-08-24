@@ -14,9 +14,15 @@ export default function Achive() {
             <Topbar />
             <Menu pageWrapId={"page-wrap"} />
             <div className="homeContainer" id="page-wrap">
-                <div className='sideMargin'></div>
-                <Rightbar />
-                <div className='sideMargin'></div>
+                {isWide ?
+                    <Sidebar />
+                    : <div className='sideMarginMobile'></div>}
+                <div className='RightBardiv'>
+                    <Rightbar />
+                </div>
+                {isWide ?
+                    <div className='sideMarginRight'></div>
+                    : <div className='sideMarginMobile'></div>}
             </div>
         </>
     )

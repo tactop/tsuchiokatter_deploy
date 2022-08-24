@@ -5,9 +5,11 @@ import SidebarFriend from '../sidebarFriend/SidebarFriend'
 import "./Sidebar.css"
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
+import { AuthContext } from '../../state/AuthContext';
 // import { AuthContext } from '../../state/AuthContext';
 export default function Sidebar() {
-    //const { user } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
+    const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
     return (
         <div className='sidear'>
             <div className="sidebarWrapper">
@@ -41,11 +43,17 @@ export default function Sidebar() {
                     </li>  */}
                 </ul>
                 <hr className="sidebarHr" />
-                <ul className="sidebaeFriendList">
-                    {/* {Users.map((user) => (
-                        <SidebarFriend user={user} key={user.id} />
-                    ))} */}
-                </ul>
+                {user &&
+                    <div className="sideBarProfile">
+                        <img
+                            src={PUBLIC_FOLDER + "/tsuchioka.jpg"}
+                            alt="" className='sideBarProfileImg' />
+                        <span className="sideBarProfileName">
+                            {user.username}
+                        </span>
+                    </div>
+                }
+
             </div>
         </div >
     )

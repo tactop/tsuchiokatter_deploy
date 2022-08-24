@@ -1,9 +1,9 @@
 import { Analytics, Face, Gif, Image } from '@mui/icons-material'
 import axios from 'axios';
-import React, { useContext, useRef } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import { useState } from 'react';
 import { AuthContext } from '../../state/AuthContext';
-// import { AuthContext } from '../../state/AuthContext';
+import StarsIcon from '@mui/icons-material/Stars';
 import "./Share.css";
 
 export default function Share() {
@@ -11,6 +11,21 @@ export default function Share() {
     const { user } = useContext(AuthContext);
     const desc = useRef();
     const [err, setErr] = useState();
+
+    const [point, setPoint] = useState();
+    useEffect(() => {
+        const fetchPoint = async () => {
+            const currentUser = await axios.get(`/api/users?username=${user.username}`);
+            setPoint(currentUser.data.point);
+        };
+        if (user) {
+            fetchPoint();
+        } else {
+            setPoint(0);
+        }
+
+    }, []);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const newPost = {
@@ -22,7 +37,7 @@ export default function Share() {
             window.location.reload();
         } catch (error) {
             console.log(error);
-            setErr("投稿に失敗しました:" + error.response.data.msg);
+            setErr(error.response.data.msg);
         }
     }
     return (
@@ -36,6 +51,10 @@ export default function Share() {
                         ref={desc} />
                 </div>
                 <div className="shareButtons">
+                    <div className='pointArea'>
+                        <StarsIcon className='coinIcon' />
+                        <span className="pointText">{point}P</span>
+                    </div>
                     <form
                         onSubmit={(e) => handleSubmit(e)}
                     >

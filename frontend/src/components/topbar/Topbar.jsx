@@ -5,8 +5,10 @@ import StarsIcon from '@mui/icons-material/Stars';
 import "./Topbar.css"
 import { AuthContext } from "../../state/AuthContext"
 import axios from 'axios';
+import useMedia from "use-media";
 
 export default function Topbar() {
+    const isWide = useMedia({ minWidth: "1000px" });
     const { user } = useContext(AuthContext);
     const [point, setPoint] = useState();
     useEffect(() => {
@@ -36,18 +38,15 @@ export default function Topbar() {
                 </Link>
             </div>
             <div className='topbarRight'>
-                <div className="topbarItemIcons">
-                    <div className='topbarIconItem'>
-                        <StarsIcon className='TopbarCoinIcon' />
-                        <span className="topbarPoint">{point}P</span>
+                {/* {
+                    isWide ||
+                    <div className="topbarItemIcons">
+                        <div className='topbarIconItem'>
+                            <StarsIcon className='TopbarCoinIcon' />
+                            <span className="topbarPoint">{point}P</span>
+                        </div>
                     </div>
-                    {/* <Link to={`/profile/${user.username}`}> */}
-                    {/* <img src={user.profilePicture ?
-                            PUBLIC_FOLDER + user.profilePicture
-                            : PUBLIC_FOLDER + "/person/noAvatar.png"}
-                            alt='' className='topbarImg' /> */}
-                    {/* </Link> */}
-                </div>
+                } */}
             </div>
         </div>
     );

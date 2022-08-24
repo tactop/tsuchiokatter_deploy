@@ -1,8 +1,17 @@
-.homeContainer{
+.homeContainer {
     display: flex;
     width: 100%;
     background-color: #f8fcff;
 }
-.sideMargin{
-    flex: 1;
+
+.RightBardiv {
+    flex: 6;
+}
+
+.sideMarginRight {
+    flex: 3.5;
+}
+
+.sideMarginMobile {
+    flex: 0.5;
 }
