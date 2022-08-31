@@ -18,7 +18,8 @@ export default function Home() {
             <div className="homeContainer" id="page-wrap">
                 {isWide && <Sidebar />}
                 <Timeline />
-                {(isWide && user) && <Rightbar />}
+                {/* {(isWide && user) && <Rightbar />} */}
+                 {(isWide) && <Rightbar />}
             </div>
         </>
     )

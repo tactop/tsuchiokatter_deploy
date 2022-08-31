@@ -29,7 +29,7 @@ const typeCheck = (text) => {
 }
 
 const deletesymbol = (text) => {
-    const symbols = [" ", "!", "?", "　", "！", "？"];
+    const symbols = [" ", "!", "?", "　", "！", "？","・",".","♪","★","☆","♡","#","＃","&","＆","(",")","（","）"];
     symbols.forEach((symbol) => {
         text = text.replaceAll(symbol, "");
     });

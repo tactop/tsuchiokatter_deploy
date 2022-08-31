@@ -4,6 +4,7 @@ import "./Post.css";
 import axios from "axios";
 import { format } from 'timeago.js';
 import { Link } from 'react-router-dom';
+import CommentIcon from '@mui/icons-material/Comment';
 // import { AuthContext } from '../../state/AuthContext';
 // import { Users } from "../../dummyData";
 
@@ -63,6 +64,9 @@ export default function Post({ post }) {
                         <img src={PUBLIC_FOLDER + post.img} alt=""
                             className="postImg" />
                     }
+                    <div className='postTopRighyRep'>
+                        <CommentIcon />
+                    </div>
                 </div>
                 {/* <div className="postBottom">
                     <div className="postBottomLeft">

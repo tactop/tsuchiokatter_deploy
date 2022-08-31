@@ -27,7 +27,7 @@ export default function NameRegist() {
             window.location.reload();
         } catch (error) {
             console.log(error);
-            setErr("登録に失敗しました:" + error);
+            setErr("登録に失敗しました:" + (error.response.data.msg));
         }
     }
     return (

@@ -9,6 +9,7 @@ import { AuthContext } from '../../state/AuthContext';
 export default function Timeline({ username }) {
   const { user } = useContext(AuthContext);
   const [posts, setPosts] = useState([]);
+  const [repTo, setRepTo] = useState();
   useEffect(() => {
     const fetchPosts = async () => {
       //console.log(username);
@@ -25,9 +26,9 @@ export default function Timeline({ username }) {
   return (
     <div className='timeline'>
       <div className="timelineWrapper">
-        {user ? <Share /> : <NameRegist />}
+        {user ? <Share setRepTo={setRepTo} repTo={repTo} /> : <NameRegist />}
         {posts.map((post) => (
-          <Post post={post} key={post._id} />
+          <Post post={post} key={post._id} setRepTo={setRepTo} />
         ))}
       </div>
     </div>

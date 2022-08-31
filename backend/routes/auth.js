@@ -4,11 +4,11 @@ const User = require("../models/User");
 //ユーザー登録
 router.post("/register", async (req, res) => {
     try {
-        console.log("register");
-        console.log(process.env.MONGOURL);
-        const existUser = await User.findOne({ email: req.body.email });
-        if (!existUser) return res.status(404).json({ msg: "そのユーザーは存在しています" });
-
+        const existUser = await User.findOne({ username: req.body.username });
+        if (existUser) {
+            console.log("ユーザー重複")
+            return res.status(403).json({ msg: "そのユーザーは存在しています" });
+        }
         const newUser = await new User({
             username: req.body.username,
             point: 0
@@ -16,6 +16,7 @@ router.post("/register", async (req, res) => {
         const user = await newUser.save();
         return res.status(200).json(user);
     } catch (err) {
+        console.log("登録エラー")
         return res.status(500).json(err);
     }
 });

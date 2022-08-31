@@ -27,11 +27,13 @@ export default function Sidebar() {
                             <span className="sidebarListItemText"> 実績</span>
                         </li>
                     </Link>
-                    <li className="sidebarListItem">
-                        <Description className='sidebarIcon' />
-                        <span className="sidebarListItemText"> 使い方</span>
-                    </li>
-                    <li className="sidebarListItem">
+                    <Link to="/guide" style={{ textDecoration: "none", color: "black" }}>
+                        <li className="sidebarListItem">
+                            <Description className='sidebarIcon' />
+                            <span className="sidebarListItemText"> 使い方</span>
+                        </li>
+                    </Link>
+                    <li className="sidebarListItemNoLink">
                         <Person className='sidebarIcon' />
                         {/* <Link to={`/profile/${user.username}`} style={{ textDecoration: "none", color: "black" }}> */}
                         <span className="sidebarListItemText"> プロフィール</span>

@@ -14,8 +14,9 @@ export default function Rightbar() {
       const achivedData = await axios.get(`/api/users/achieve/list?username=${user.username}`);
       setAchiveds(achivedData.data);
     };
-    fetchAchive();
-  }, []);
+    if(user){fetchAchive();}
+
+  }, [user]);
   return (
     <div className='rightbar'>
       <div className="rightbarWrapper">
