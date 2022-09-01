@@ -30,11 +30,21 @@ const allTypeModels = [
                 typeDisp: "映画の話をドガチャガ",
                 regExp: '^(映画の話を|)ドガチャガ$',
                 point: 3
-            },            {
+            }, {
                 type: "透明人間",
                 typeDisp: "透明人間",
                 regExp: '^透明人間$',
-                point: 3
+                point: 1
+            }, {
+                type: "徳原旅行を告発せよ",
+                typeDisp: "徳原旅行を告発せよ",
+                regExp: '^徳原旅行を告発せよ$',
+                point: 1
+            },{
+                type: "ヒサモマサ",
+                typeDisp: "ヒサモマサ",
+                regExp: '^(ヒサモマサ|ひさもまさ)(症候群|)$',
+                point: 1
             },
 
         ]
@@ -46,32 +56,32 @@ const allTypeModels = [
                 type: "体くん",
                 typeDisp: "体くん",
                 regExp: '^(からだ|体)(くん|君)$',
-                point: -1
+                point: -5
             }, {
                 type: "平成近親相姦男",
                 typeDisp: "平成近親相姦男",
                 regExp: '^平成近親相姦男$',
-                point: -3
+                point: -5
             }, {
                 type: "ちんみぃ",
                 typeDisp: "ちんみぃ",
                 regExp: '^ちんみ(い|ぃ)$',
-                point: -1
+                point: -5
             }, {
                 type: "ミスター・ノービン",
                 typeDisp: "ミスター・ノービン",
                 regExp: '^ミスター(・|)ノービン$',
-                point: -1
+                point: -5
             }, {
                 type: "オナニーメッセンジャー",
                 typeDisp: "オナニーメッセンジャー",
                 regExp: '^オ(○|〇|ナ)ニーメッセンジャー$',
-                point: -1
+                point: -5
             }, {
                 type: "雌鶏知らず",
                 typeDisp: "雌鶏知らず",
                 regExp: '^雌鶏知らず$',
-                point: -1
+                point: -5
             },
 
         ]
@@ -93,6 +103,11 @@ const allTypeModels = [
                 type: "猿の祈り",
                 typeDisp: "猿の祈り",
                 regExp: '^猿の祈り$',
+                point: -1
+            },{
+                type: "歯クソサワー",
+                typeDisp: "歯クソサワー",
+                regExp: '^歯(くそ|クソ|糞)サワー$',
                 point: -1
             },
         ]
@@ -157,17 +172,17 @@ const allTypeModels = [
                 typeDisp: "誠に遺憾です",
                 regExp: '^(誠|まこと)に(遺憾|いかん)です$',
                 point: -3
-            },   {
+            }, {
                 type: "国鉄のにおいがムンムンするから",
                 typeDisp: "国鉄のにおいがムンムンするから",
                 regExp: '^国鉄の(におい|臭い|匂い)が(むんむん|ムンムン)する(から|)$',
                 point: -3
-            },{
+            }, {
                 type: "世間は許してくれませんよ",
                 typeDisp: "世間は許してくれませんよ",
                 regExp: '^(それはちょっと|)世間は(ゆる|許)してく.{3,6}んよ$',
                 point: -3
-            },{
+            }, {
                 type: "雪の降る町",
                 typeDisp: "雪の降る町",
                 regExp: '^雪の降る町$',

@@ -153,7 +153,7 @@ router.get("/timeline/all", async (req, res) => {
         //     }
         //     // res.render('index', {data: data});
         // });
-        const userPosts = await Post.find().sort({ createdAt: -1 }).limit(50);
+        const userPosts = await Post.find().sort({ createdAt: -1 }).limit(25);
         return res.status(200).json(userPosts);
     } catch (error) {
         console.log(error);
